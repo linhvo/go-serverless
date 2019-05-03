@@ -19,13 +19,13 @@
     "HelloLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/testgo-dev-hello"
+        "LogGroupName": "/aws/lambda/go-serverless-dev-hello"
       }
     },
     "WorldLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/testgo-dev-world"
+        "LogGroupName": "/aws/lambda/go-serverless-dev-world"
       }
     },
     "IamRoleLambdaExecution": {
@@ -54,7 +54,7 @@
                 "-",
                 [
                   "dev",
-                  "testgo",
+                  "go-serverless",
                   "lambda"
                 ]
               ]
@@ -69,10 +69,10 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/testgo-dev-hello:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/go-serverless-dev-hello:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/testgo-dev-world:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/go-serverless-dev-world:*"
                     }
                   ]
                 },
@@ -83,50 +83,11 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/testgo-dev-hello:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/go-serverless-dev-hello:*:*"
                     },
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/testgo-dev-world:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/go-serverless-dev-world:*:*"
                     }
-                  ]
-                },
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "s3:ListBucket"
-                  ],
-                  "Resource": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:aws:s3:::",
-                        {
-                          "Ref": "ServerlessDeploymentBucket"
-                        }
-                      ]
-                    ]
-                  }
-                },
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "sqs:SendMessage",
-                    "sqs:ReceiveMessage",
-                    "sqs:DeleteMessage"
-                  ],
-                  "Resource": [
-                    "arn:aws:sqs:us-east-1:502004135298:sqs-queue"
-                  ]
-                },
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "sqs:ReceiveMessage",
-                    "sqs:DeleteMessage",
-                    "sqs:GetQueueAttributes"
-                  ],
-                  "Resource": [
-                    "arn:aws:sqs:us-east-1:502004135298:sqs-queue"
                   ]
                 }
               ]
@@ -138,7 +99,7 @@
           "Fn::Join": [
             "-",
             [
-              "testgo",
+              "go-serverless",
               "dev",
               "us-east-1",
               "lambdaRole"
@@ -154,9 +115,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/testgo/dev/1555910018052-2019-04-22T05:13:38.052Z/testgo.zip"
+          "S3Key": "serverless/go-serverless/dev/1556858749304-2019-05-03T04:45:49.304Z/go-serverless.zip"
         },
-        "FunctionName": "testgo-dev-hello",
+        "FunctionName": "go-serverless-dev-hello",
         "Handler": "bin/hello",
         "MemorySize": 1024,
         "Role": {
@@ -173,14 +134,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "HelloLambdaVersionrRFK3N4KSfYShhjh5mkpDbYcjv7ME2LNPMchZyev03o": {
+    "HelloLambdaVersionvseQazxHPTiDjOSVF8tn9LFoawBGBRPbXznvpIXFI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "MurKjMngnxsXuVcE7CfFXwEd+NsV41JQxt4ofqbZmUo="
+        "CodeSha256": "gcy1ZIKvBSDAsVuSDxgW8mRlWaUyidb2uMP+GI8tMVE="
       }
     },
     "WorldLambdaFunction": {
@@ -190,9 +151,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/testgo/dev/1555910018052-2019-04-22T05:13:38.052Z/testgo.zip"
+          "S3Key": "serverless/go-serverless/dev/1556858749304-2019-05-03T04:45:49.304Z/go-serverless.zip"
         },
-        "FunctionName": "testgo-dev-world",
+        "FunctionName": "go-serverless-dev-world",
         "Handler": "bin/world",
         "MemorySize": 1024,
         "Role": {
@@ -209,20 +170,20 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "WorldLambdaVersionjr1ql2nbIlJ0qoAFAXTOd05aZhd1e3xscFnRDTkhFZo": {
+    "WorldLambdaVersion2fQhUEYbjtM4AgIXs7Ape6roBkHkacs29B43lJoWYY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "WorldLambdaFunction"
         },
-        "CodeSha256": "MurKjMngnxsXuVcE7CfFXwEd+NsV41JQxt4ofqbZmUo="
+        "CodeSha256": "gcy1ZIKvBSDAsVuSDxgW8mRlWaUyidb2uMP+GI8tMVE="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-testgo",
+        "Name": "dev-go-serverless",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -240,6 +201,21 @@
           ]
         },
         "PathPart": "hello",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceWorld": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "world",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -288,7 +264,50 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1555910015650": {
+    "ApiGatewayMethodWorldGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceWorld"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "WorldLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1556858747347": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -297,7 +316,8 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodHelloGet"
+        "ApiGatewayMethodHelloGet",
+        "ApiGatewayMethodWorldGet"
       ]
     },
     "HelloLambdaPermissionApiGateway": {
@@ -347,19 +367,51 @@
         }
       }
     },
-    "WorldEventSourceMappingSQSSqsqueue": {
-      "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": "IamRoleLambdaExecution",
+    "WorldLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
       "Properties": {
-        "BatchSize": 10,
-        "EventSourceArn": "arn:aws:sqs:us-east-1:502004135298:sqs-queue",
         "FunctionName": {
           "Fn::GetAtt": [
             "WorldLambdaFunction",
             "Arn"
           ]
         },
-        "Enabled": "True"
+        "Action": "lambda:InvokeFunction",
+        "Principal": {
+          "Fn::Join": [
+            "",
+            [
+              "apigateway.",
+              {
+                "Ref": "AWS::URLSuffix"
+              }
+            ]
+          ]
+        },
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
       }
     }
   },
@@ -372,13 +424,13 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionrRFK3N4KSfYShhjh5mkpDbYcjv7ME2LNPMchZyev03o"
+        "Ref": "HelloLambdaVersionvseQazxHPTiDjOSVF8tn9LFoawBGBRPbXznvpIXFI"
       }
     },
     "WorldLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "WorldLambdaVersionjr1ql2nbIlJ0qoAFAXTOd05aZhd1e3xscFnRDTkhFZo"
+        "Ref": "WorldLambdaVersion2fQhUEYbjtM4AgIXs7Ape6roBkHkacs29B43lJoWYY"
       }
     },
     "ServiceEndpoint": {
